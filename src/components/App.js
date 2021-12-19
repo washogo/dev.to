@@ -35,6 +35,13 @@ const App = () => {
     setTodo("");
   };
 
+  const handleDeleteClick = (id) => {
+    const removeItem = todos.filter((todo) => {
+      return todo.id !== id;
+    });
+    setTodos(removeItem);
+  }
+
   return(
     <>
       <div className="App">
@@ -47,9 +54,12 @@ const App = () => {
             onChange={handleInputText}
           />
         </form>
-        <ul>
+        
+        <ul className="todo-list">
           {todos.map((todo) => (
-            <li key={todo.id}>{todo.text}</li>
+            <li key={todo.id}>{todo.text}
+              <button onClick={() => handleDeleteClick(todo.id)}>X</button>
+            </li>
           ))}
         </ul>
       </div>
